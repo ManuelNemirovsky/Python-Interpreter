@@ -16,5 +16,5 @@ const bool Void::isPrintable()
 
 const string Void::toString()
 {
-	return "The value is Void and he has nothing";
+	return "";
 }

@@ -10,6 +10,7 @@
 #include "String.h"
 #include "IndentationException.h"
 #include "SyntaxException.h"
+#include "NameErrorException.h"
 #include <string>
 #include <unordered_map>
 #include <iostream>
@@ -20,14 +21,14 @@ class Parser
 public:
 	static Type* parseString(std::string str) throw();
 	static Type* getType(std::string &str);
-
-
+	static unordered_map<string, Type*> _variables;
+	static void free();
 private:
 
 	static bool isLegalVarName(const std::string& str);
 	static bool makeAssignment(const std::string& str);
 	static Type* getVariableValue(const std::string &str);
-	unordered_map<string, Type*> _varibles;
+	
 };
 
 #endif //PARSER_H

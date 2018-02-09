@@ -1,6 +1,8 @@
 #include "parser.h"
 #include <iostream>
 
+std::unordered_map<string, Type*> Parser::_variables;
+
 //check if the string that we got starts with tab or whitespace
 Type* Parser::parseString(std::string str) throw()
 {
@@ -12,14 +14,28 @@ Type* Parser::parseString(std::string str) throw()
 		Helper::rtrim(str);
 		if (!strncmp(str.c_str(), tab, 1) || !strncmp(str.c_str(), whiteSpace, 1))
 			throw IndentationException();
+		
+		t = getVariableValue(str);
 
-		t = getType(str);
-
-		if (t != NULL)
-			return t;
-		else
+		if (!t)
 		{
-			throw SyntaxException();
+			if (makeAssignment(str))
+			{
+				return new Void();
+			}
+			Helper::rtrim(str);
+			t = getType(str);
+			if (!t)
+			{
+				if (!isLegalVarName(str))
+					throw NameErrorException(str);
+				else
+					throw SyntaxException();
+			}
+			else
+			{
+				return t;
+			}
 		}
 	}
 
@@ -73,46 +89,53 @@ bool Parser::isLegalVarName(const std::string& str)
 
 bool Parser::makeAssignment(const std::string& str)
 {
-	string name = "";
-	string placement = "";
-	int i = 0;
-	int j = 0;
-	Type* t;
-	if (!str.find("="))
+	string name = "", parameter = "";
+	Type* t = NULL;
+	int place = str.find('=');
+	if (place > 0 && place < str.length())
+	{
+		name = str.substr(0, str.find('='));
+		parameter = str.substr(name.size()+1, str.size());
+		Helper::trim(name);
+		Helper::trim(parameter);
+
+		t = getType(parameter);
+
+		if (isLegalVarName(name) && t)
+		{
+			std::unordered_map<std::string, Type*>::iterator it = _variables.find(name);
+			if (it == _variables.end())
+			{
+				_variables.insert(pair<string, Type*>(name,t));
+			}
+			else
+			{
+				it->second = t;
+			}
+			return true;
+		}
+		else
+		{
+			throw SyntaxException();
+		}
+	}
+	else
 	{
 		return false;
 	}
+}
 
-	while (str[i] != '=')
+Type* Parser::getVariableValue(const std::string &str)
+{
+	std::unordered_map<std::string, Type*>::iterator it = _variables.find(str);
+	if (it != _variables.end())
 	{
-		name[i] = str[i];
-		i++;
+		return it->second;
 	}
+	return NULL;
+}
 
-	Helper::rtrim(name);
-	
-	while (str[i] != 0)
-	{
-		placement[j] = str[i];
-		i++;
-		j++;
-	}
-	Helper::rtrim(placement);
-
-	if (!isLegalVarName(name))
-	{
-		throw SyntaxException();
-	}
-
-	t = getType(placement);
-
-	if (t != NULL)
-		return t;
-	else
-	{
-		throw SyntaxException();
-	}
-
-	//_varibles.insert(pair<string, Type*>(name, t));
-	
+void Parser::free()
+{
+	delete &_variables;
 }

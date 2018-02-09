@@ -1,6 +1,7 @@
 #include "type.h"
 #include "InterperterException.h"
 #include "IndentationException.h"
+#include "NameErrorException.h"
 #include "SyntaxException.h"
 
 #include "parser.h"
@@ -28,7 +29,8 @@ int main(int argc,char **argv)
 		{
 			// prasing command
 			t = Parser::parseString(input_string);
-			cout << t->toString() << endl;
+			if (t->isPrintable())
+				cout << t->toString() << endl;
 			if (t->getTemp())
 			{
 				free(t);
@@ -42,12 +44,16 @@ int main(int argc,char **argv)
 		{
 			cout << e.what() << endl;
 		}
+		catch (NameErrorException e)
+		{
+			cout << e.what() << endl;
+		}
 
 		// get new command from user
 		std::cout << ">>> ";
 		std::getline(std::cin, input_string);
 	}
-
+	Parser::free();
 	return 0;
 }
 

@@ -1,9 +1,10 @@
 #include "NameErrorException.h"
 #include <string>
-const char* NameErrorException::what(char* _name) const throw()
+NameErrorException::NameErrorException(std::string str) : _name(str)
 {
-	char* ans = " NameError : name ";
-	strcat_s(ans, strlen(_name) ,_name);
-	strcat_s(ans, 15 ," is not defined");
-	return ans;
+	_msg = "NameError: name '" + _name + "' is not defined";
+}
+const char* NameErrorException::what() const throw()
+{
+	return _msg.c_str();
 }
