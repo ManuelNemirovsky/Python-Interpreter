@@ -27,6 +27,7 @@ private:
 
 	static bool isLegalVarName(const std::string& str);
 	static bool makeAssignment(const std::string& str);
+	static bool copyType(const std::string& dst, const std::string& src);
 	static Type* getVariableValue(const std::string &str);
 	
 };

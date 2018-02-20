@@ -96,8 +96,17 @@ bool Parser::makeAssignment(const std::string& str)
 	{
 		name = str.substr(0, str.find('='));
 		parameter = str.substr(name.size()+1, str.size());
+
 		Helper::trim(name);
 		Helper::trim(parameter);
+
+		if (copyType(name, parameter))
+		{
+			std::unordered_map<std::string, Type*>::iterator it = _variables.find(parameter);
+			Type* t = it->second;
+			_variables.insert(pair<string, Type*>(name, t));
+			return true;
+		}
 
 		t = getType(parameter);
 
@@ -123,6 +132,12 @@ bool Parser::makeAssignment(const std::string& str)
 	{
 		return false;
 	}
+}
+
+bool Parser::copyType(const std::string& src, const std::string& dst)
+{
+	std::unordered_map<std::string, Type*>::iterator it = _variables.find(dst);
+	return it == _variables.end() ? false : true;
 }
 
 Type* Parser::getVariableValue(const std::string &str)
