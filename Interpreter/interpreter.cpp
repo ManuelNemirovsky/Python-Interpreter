@@ -29,11 +29,15 @@ int main(int argc,char **argv)
 		{
 			// prasing command
 			t = Parser::parseString(input_string);
-			if (t->isPrintable())
-				cout << t->toString() << endl;
-			if (t->getTemp())
+			//if someone enters empty message
+			if (t)
 			{
-				free(t);
+				if (t->isPrintable())
+					cout << t->toString() << endl;
+				if (t->getTemp())
+				{
+					free(t);
+				}
 			}
 		}
 		catch (IndentationException e)

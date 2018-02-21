@@ -37,6 +37,11 @@ Type* Parser::parseString(std::string str) throw()
 				return t;
 			}
 		}
+		else
+		{
+			t->setTemp(false);
+			return t;
+		}
 	}
 
 	return NULL;

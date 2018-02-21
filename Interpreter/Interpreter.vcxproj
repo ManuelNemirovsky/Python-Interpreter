@@ -69,6 +69,7 @@
     <ClInclude Include="IndentationException.h" />
     <ClInclude Include="Integer.h" />
     <ClInclude Include="InterperterException.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="NameErrorException.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="Sequence.h" />
@@ -83,6 +84,7 @@
     <ClCompile Include="IndentationException.cpp" />
     <ClCompile Include="Integer.cpp" />
     <ClCompile Include="interpreter.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="NameErrorException.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="Sequence.cpp" />
