@@ -7,6 +7,7 @@ using namespace std;
 class Type
 {
 public:
+	Type(bool value);
 	Type();
 	~Type();
 	bool getTemp();

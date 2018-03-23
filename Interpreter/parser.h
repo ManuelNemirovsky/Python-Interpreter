@@ -8,6 +8,7 @@
 #include "Boolean.h"
 #include "Void.h"
 #include "String.h"
+#include "List.h"
 #include "IndentationException.h"
 #include "SyntaxException.h"
 #include "NameErrorException.h"

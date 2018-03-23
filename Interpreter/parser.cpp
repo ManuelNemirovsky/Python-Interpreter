@@ -65,6 +65,29 @@ Type* Parser::getType(string &str)
 		return bo;
 	}
 
+	else if (Helper::isList(str))
+	{
+		int firstPart = 0, end = 0;
+		string node = "";
+		vector<Type*> parameters;
+		str = str.substr(1, str.length() - 2); // delete '[' and ']'
+		Helper::trim(str);
+		do
+		{
+			firstPart = str.find(',' , end);
+			if (firstPart == -1)
+			{
+				firstPart = str.length();
+			}
+
+			node = str.substr(end, firstPart - end);
+			Helper::trim(node);
+			parameters.push_back(getType(node));
+			end = firstPart + 1;
+		} while (firstPart != str.length());
+		return new List(parameters , true);
+	}
+
 	else if (Helper::isString(str))
 	{
 		String *s = new String(str);

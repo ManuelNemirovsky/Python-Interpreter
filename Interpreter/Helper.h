@@ -10,6 +10,9 @@ public:
 	// check if the parameter is valid Integer value
 	static bool isInteger(const std::string& s);
 
+	//check if the parameter is valid list value
+	static bool isList(const std::string& s);
+
 	// check if the parameter is valid Boolean value
 	static bool isBoolean(const std::string& s);
 

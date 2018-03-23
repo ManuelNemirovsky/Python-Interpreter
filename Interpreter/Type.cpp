@@ -4,15 +4,20 @@ Type::Type()
 {
 }
 
+Type::Type(bool value) : _isTemp(value)
+{
+
+}
+
 Type::~Type(){
 }
 
 bool Type::getTemp()
 {
-	return _isTemp;
+	return this->_isTemp;
+}
+void Type::setTemp(bool value)
+{
+	this->_isTemp = value;
 }
 
-void Type::setTemp(bool ans)
-{
-	_isTemp = ans;
-}
