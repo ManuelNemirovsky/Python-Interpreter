@@ -1,6 +1,6 @@
 # Python-Interpreter #
 ## Synopsis ##
-Basic python interpreter in c++, including preparation of exceptions objects. The project demonstrates the use of polymorphism, and data structures belonging to STL.
+Basic python interpreter in c++, including preparation of exceptions. The project demonstrates the use of polymorphism, and data structures belonging to STL.
 
 ## Proper Division Into Classes And Functions ##
 **Helper.cpp:** Number of static functions that will help during the development.
