@@ -12,3 +12,6 @@ Basic python interpreter in c++, including preparation of exceptions objects. Th
 **Type.cpp:** The interpreter will need to support some basic types and they will inherit from this class.
 
 **interpreter.cpp:** The main loop of the system.
+
+
+*Designed by [Manuel Nemirovsky](https://github.com/ManuelNemirovsky)*
