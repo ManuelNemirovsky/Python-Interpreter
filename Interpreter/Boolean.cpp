@@ -9,12 +9,12 @@ Boolean::~Boolean(){
 
 }
 
-const bool Boolean::isPrintable()
+bool Boolean::isPrintable()
 {
 	return true;
 }
 
-const string Boolean::toString()
+string Boolean::toString()
 {
 	if (_something)
 	{

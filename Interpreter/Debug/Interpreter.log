@@ -1,4 +1,4 @@
-﻿Build started 3/23/2018 3:57:34 PM.
+﻿Build started 3/27/2018 11:48:24 AM.
      1>Project "C:\Users\User\Desktop\interpreter\Python-Interpreter\Interpreter\Interpreter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt parser.cpp
@@ -9,8 +9,8 @@
                  __declspec(nothrow) or throw() was specified on the function
      1>c:\users\user\desktop\interpreter\python-interpreter\interpreter\parser.cpp(33): warning C4297: 'Parser::parseString' : function assumed not to throw an exception but does
                  __declspec(nothrow) or throw() was specified on the function
-     1>c:\users\user\desktop\interpreter\python-interpreter\interpreter\parser.cpp(110): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\desktop\interpreter\python-interpreter\interpreter\parser.cpp(123): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\interpreter\python-interpreter\interpreter\parser.cpp(230): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\interpreter\python-interpreter\interpreter\parser.cpp(144): warning C4715: 'Parser::getType' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\interpreter\Python-Interpreter\Debug\Interpreter.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Desktop\interpreter\Python-Interpreter\Debug\Interpreter.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\interpreter\Python-Interpreter\Debug\Interpreter.lib" /MACHINE:X86 Debug\Boolean.obj
          Debug\Helper.obj
@@ -24,10 +24,11 @@
          Debug\String.obj
          Debug\SyntaxException.obj
          Debug\Type.obj
+         Debug\TypeException.obj
          Debug\Void.obj
          Interpreter.vcxproj -> C:\Users\User\Desktop\interpreter\Python-Interpreter\Debug\Interpreter.exe
      1>Done Building Project "C:\Users\User\Desktop\interpreter\Python-Interpreter\Interpreter\Interpreter.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.12
+Time Elapsed 00:00:01.10

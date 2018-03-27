@@ -27,7 +27,7 @@ Type* Parser::parseString(std::string str) throw()
 			t = getType(str);
 			if (!t)
 			{
-				if (!isLegalVarName(str))
+				if (!Helper::isLegalVarName(str))
 					throw NameErrorException(str);
 				else
 					throw SyntaxException();
@@ -94,25 +94,132 @@ Type* Parser::getType(string &str)
 		return s;
 	}
 	
+	else if (Helper::isFunc(str))
+	{
+		string func = findFunctionType(str);
+		string value = str.substr(func.length() + 1, str.length() - (func.length() + 2)); 
+		if (!func.compare("type"))
+		{
+			string returnValue = "<type '";
+			returnValue += findValueType(value);
+			returnValue += "'>";
+			String *s = new String(returnValue);
+			s->setTemp(true);
+			return s;
+		}
+		else if (!func.compare("len"))
+		{
+			Integer *s = new Integer(handleLenFunc(value));
+			s->setTemp(true);
+			return s;
+		}
+		else if(!func.compare("del"))
+		{
+			string varName = str.substr(str.find(' ') + 1);
+			if (Helper::isLegalVarName(varName))
+			{
+				if (getVariableValue(varName))
+				{
+					_variables.erase(varName);
+					Void *s = new Void();
+					s->setTemp(true);
+					return s;
+				}
+				else
+				{
+					throw NameErrorException(varName);
+				}
+			}
+			else
+			{
+				throw SyntaxException();
+			}
+		}
+	}
+
 	else
 	{
 		return NULL;
 	}
 }
 
-bool Parser::isLegalVarName(const std::string& str)
+int Parser::handleLenFunc(std::string& value)
 {
-	bool ans = true;
-	
-	if (Helper::isDigit(str[0]))
-		return false;
-
-	for (int i = 0; i < str.size(); i++)
+	string type = findValueType(value);
+	if (!type.compare("list") || !type.compare("str"))
 	{
-		if (!Helper::isLetter(str[i]) && !Helper::isUnderscore(str[i]) && !Helper::isDigit(str[i]))
-			ans = false;
+		Type *v = getType(value);
+		if (!v)
+		{
+			return handleLenFunc(getVariableValue(value)->toString());
+			if(!v)
+				throw NameErrorException(value);
+		}
+		return v->getLen();
+	}
+	else
+	{
+		throw TypeException(type , "len");
+	}
+}
+
+string Parser::findValueType(std::string& str)
+{
+	string ans;
+	if (Helper::isBoolean(str))
+	{
+		ans = "bool";
+	}
+	else if (Helper::isInteger(str))
+	{
+		ans = "int";
+	}
+	else if (Helper::isString(str))
+	{
+		ans = "str";
+	}
+	else if (Helper::isList(str))
+	{
+		ans = "list";
+	}
+	else if (Helper::isLegalVarName(str))
+	{
+		Type* t = getVariableValue(str);
+		if (t)
+		{
+			ans = findValueType(t->toString());
+		}
+		else
+		{
+			throw NameErrorException(str);
+		}
+	}
+	else
+	{
+		throw SyntaxException();
 	}
 	return ans;
+}
+
+string Parser::findFunctionType(const std::string& str)
+{
+	string m = "";
+	if (Helper::isFunc(str))
+	{
+		if (!str.substr(0, 3).compare("del") && str.length() > 4)
+		{
+			m = "del";
+		}
+		else
+		{
+			m = str.substr(0, str.find('('));
+		}
+	}
+	else
+	{
+		throw SyntaxException();
+	}
+	return m;
 }
 
 bool Parser::makeAssignment(const std::string& str)
@@ -138,7 +245,7 @@ bool Parser::makeAssignment(const std::string& str)
 
 		t = getType(parameter);
 
-		if (isLegalVarName(name) && t)
+		if (Helper::isLegalVarName(name) && t)
 		{
 			std::unordered_map<std::string, Type*>::iterator it = _variables.find(name);
 			if (it == _variables.end())

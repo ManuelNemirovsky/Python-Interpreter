@@ -5,12 +5,12 @@ List::List(vector<Type*>& value, bool isTemp) : Sequence(isTemp), _value(value)
 
 }
 
-const bool List::isPrintable()
+bool List::isPrintable()
 {
 	return true;
 }
 
-const string List::toString()
+string List::toString()
 {
 	string m = "[";
 	for (vector<Type*>::const_iterator i = _value.begin(); i != _value.end(); i++)

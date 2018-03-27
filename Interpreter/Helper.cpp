@@ -82,8 +82,45 @@ void Helper::removeLeadingZeros(std::string &str)
 	}
 }
 
+bool Helper::isFunc(const std::string& str)
+{
+	int fBracket = str.find('(');
+	if (fBracket != -1)
+	{
+		if (isLegalVarName(str.substr(0, fBracket)) && str.find_last_of(')') == str.length() - 1)
+		{
+			return true;
+		}
+	}
+	else
+	{
+		if (!str.substr(0, 3).compare("del") && str.length() > 4)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
-
+bool Helper::isLegalVarName(const std::string& str)
+{
+	bool ans = true;
+	if (!isDigit(str[0]))
+	{
+		for (auto i = 0; i < str.length(); i++)
+		{
+			if (!(isLetter(str[i]) || isDigit(str[i]) || isUnderscore(str[i])))
+			{
+				ans = false;
+			}
+		}
+	}
+	else
+	{
+		ans = false;
+	}
+	return ans;
+}
 
 bool Helper::isLowerLetter(char c)
 {

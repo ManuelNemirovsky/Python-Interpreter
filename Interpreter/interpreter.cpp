@@ -1,6 +1,7 @@
 #include "type.h"
 #include "InterperterException.h"
 #include "IndentationException.h"
+#include "TypeException.h"
 #include "NameErrorException.h"
 #include "SyntaxException.h"
 
@@ -49,6 +50,10 @@ int main(int argc,char **argv)
 			cout << e.what() << endl;
 		}
 		catch (NameErrorException e)
+		{
+			cout << e.what() << endl;
+		}
+		catch (TypeException e)
 		{
 			cout << e.what() << endl;
 		}

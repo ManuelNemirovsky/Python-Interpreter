@@ -8,8 +8,8 @@ class List : public Sequence
 {
 public:
 	List(vector<Type*>& value, bool isTemp);
-	const bool isPrintable();
-	const string toString();
+	bool isPrintable();
+	string toString();
 	int getLen();
 
 private:

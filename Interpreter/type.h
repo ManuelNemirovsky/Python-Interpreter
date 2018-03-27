@@ -12,8 +12,9 @@ public:
 	~Type();
 	bool getTemp();
 	void setTemp(bool ans);
-	virtual const string toString() = 0;
-	virtual const bool isPrintable() = 0;
+	virtual string toString() = 0;
+	virtual bool isPrintable() = 0;
+	virtual int getLen();
 
 private:
 	bool _isTemp;

@@ -2,24 +2,29 @@
 
 String::String(string str)
 {
-	if (str.find("\'"))
-	{
-		str.replace(str.find("\""), 1, "\'");
-		str.replace(str.find("\""), 1, "\'");
-	}
-	_string = str;
+	_string = str.c_str();
 }
 
 String::~String(){
 
 }
 
-const bool String::isPrintable()
+bool String::isPrintable()
 {
 	return true;
 }
 
-const string String::toString()
+string String::toString()
 {
-	return  _string;
+	if (_string.find("\"") != -1)
+	{
+		std::replace(_string.begin(), _string.end(), '\"', '\'');
+		return _string;
+	}
+	return _string;
+}
+
+int String::getLen()
+{
+	return _string.length();
 }

@@ -10,8 +10,8 @@ class Boolean : public Type
 public:
 	Boolean(bool something);
 	~Boolean();
-	const string toString();
-	const bool isPrintable();
+	string toString();
+	bool isPrintable();
 private:
 	bool _something;
 };

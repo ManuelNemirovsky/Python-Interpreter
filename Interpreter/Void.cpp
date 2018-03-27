@@ -9,12 +9,12 @@ Void::~Void(){
 
 }
 
-const bool Void::isPrintable()
+bool Void::isPrintable()
 {
 	return false;
 }
 
-const string Void::toString()
+string Void::toString()
 {
 	return "";
 }

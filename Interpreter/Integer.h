@@ -9,8 +9,8 @@ class Integer : public Type
 public:
 	Integer(int num);
 	~Integer();
-	const string toString();
-	const bool isPrintable();
+	string toString();
+	bool isPrintable();
 private:
 	int _num;
 };

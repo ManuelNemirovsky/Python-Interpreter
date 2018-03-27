@@ -1,6 +1,7 @@
 #ifndef STRING_H
 #define STRING_H
 #include "type.h"
+#include <algorithm>
 #include "Sequence.h"
 #include <string>
 
@@ -10,9 +11,9 @@ class String : public Type
 public:
 	String(string str);
 	~String();
-	const string String::toString();
-	const bool String::isPrintable();
-
+	string String::toString();
+	bool String::isPrintable();
+	int getLen();
 private:
 	string _string;
 };

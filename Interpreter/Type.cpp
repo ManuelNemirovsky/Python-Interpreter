@@ -21,3 +21,7 @@ void Type::setTemp(bool value)
 	this->_isTemp = value;
 }
 
+int Type::getLen()
+{
+	return 0;
+}

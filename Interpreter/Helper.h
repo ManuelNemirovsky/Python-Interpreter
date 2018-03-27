@@ -25,6 +25,9 @@ public:
 	// check if the parameter is lower letter
 	static bool isLowerLetter(char c);	
 	
+	// check if the parameter is a function
+	static bool isFunc(const std::string& str);
+
 	// check if the parameter is upper letter
 	static bool isUpperLetter(char c);
 
@@ -46,6 +49,8 @@ public:
 	// remove leading zeros from the beginning of the string
 	static void removeLeadingZeros(std::string &str); 
 
+	//Checking if the varible is legal
+	static bool isLegalVarName(const std::string& str);
 };
 
 #endif

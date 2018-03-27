@@ -10,8 +10,8 @@ class Void : public Type
 public:
 	Void();
 	~Void();
-	const string toString();
-	const bool isPrintable();
+	string toString();
+	bool isPrintable();
 private:
 
 };

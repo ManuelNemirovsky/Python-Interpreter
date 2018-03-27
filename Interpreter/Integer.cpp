@@ -9,12 +9,12 @@ Integer::~Integer(){
 
 }
 
-const bool Integer::isPrintable()
+bool Integer::isPrintable()
 {
 	return true;
 }
 
-const string Integer::toString()
+string Integer::toString()
 {
 	return to_string(_num);
 }

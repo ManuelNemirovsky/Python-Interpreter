@@ -11,6 +11,7 @@
 #include "List.h"
 #include "IndentationException.h"
 #include "SyntaxException.h"
+#include "TypeException.h"
 #include "NameErrorException.h"
 #include <string>
 #include <unordered_map>
@@ -24,13 +25,14 @@ public:
 	static Type* getType(std::string &str);
 	static unordered_map<string, Type*> _variables;
 	static void free();
+	
 private:
-
-	static bool isLegalVarName(const std::string& str);
 	static bool makeAssignment(const std::string& str);
 	static bool copyType(const std::string& dst, const std::string& src);
 	static Type* getVariableValue(const std::string &str);
-	
+	static string Parser::findFunctionType(const std::string& str);
+	static string findValueType(std::string& str);
+	static int Parser::handleLenFunc(std::string& value);
 };
 
 #endif //PARSER_H
