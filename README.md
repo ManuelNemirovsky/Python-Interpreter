@@ -13,5 +13,5 @@ Basic python interpreter in c++, including preparation of exceptions. The projec
 
 **interpreter.cpp:** The main loop of the system.
 
-
-*Designed by [Manuel Nemirovsky](https://github.com/ManuelNemirovsky)*
+## Author ##
+*[Manuel Nemirovsky](https://github.com/ManuelNemirovsky)*
